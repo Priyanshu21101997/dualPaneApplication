@@ -25,18 +25,24 @@ class MainActivity : AppCompatActivity() , FirstFragment.OnOptionClickListener{
             isTwoPane = true
         }
 
-
         fm.beginTransaction().add(R.id.container,firstFragment).commit()
     }
 
     override fun onOptionSelected(option: String?) {
         val displaySettingsFragment = DisplaySettingsFragment()
+        val storageSettingsFragment = StorageSettingsFragment()
         if(isTwoPane){
-            fm.beginTransaction()
-                .replace(R.id.detailContainer,displaySettingsFragment).commit()
+            when(option) {
+                "display"->fm.beginTransaction()
+                    .replace(R.id.detailContainer, displaySettingsFragment).commit()
+                "storage"->fm.beginTransaction()
+                    .replace(R.id.detailContainer, storageSettingsFragment).commit()
+            }
         }
-        val intent = Intent(this, SettingDetailActivity::class.java)
-        intent.putExtra("EXTRA_SETTING_OPTION", option)
-        startActivity(intent)
+        else {
+            val intent = Intent(this, SettingDetailActivity::class.java)
+            intent.putExtra("EXTRA_SETTING_OPTION", option)
+            startActivity(intent)
+        }
     }
 }

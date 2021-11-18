@@ -9,13 +9,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.example.dualpaneapplication.FirstFragment.OnOptionClickListener
 
-
-
-
-
-
-
-
 class FirstFragment : Fragment() {
 
 
@@ -42,8 +35,12 @@ class FirstFragment : Fragment() {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_first, container, false)
         val mDisplayOption:LinearLayout = rootView.findViewById(R.id.displayOption)
+        val mStorageOption:LinearLayout = rootView.findViewById(R.id.storageOption)
+
 
         mDisplayOption.setOnClickListener { mCallback!!.onOptionSelected("display") }
+        mStorageOption.setOnClickListener { mCallback!!.onOptionSelected("storage") }
+
 
         return rootView
     }

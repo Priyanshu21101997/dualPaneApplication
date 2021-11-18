@@ -16,9 +16,19 @@ class SettingDetailActivity : AppCompatActivity() {
         val option:String? = intent.getStringExtra(EXTRA_SETTING_OPTION)
         val fragmentManager: FragmentManager = supportFragmentManager
         val displaySettingFragment = DisplaySettingsFragment()
+        val storageSettingsFragment = StorageSettingsFragment()
 
-        fragmentManager.beginTransaction().add(R.id.settingsContainer,displaySettingFragment)
-            .commit()
+
+        when(option) {
+
+            "display" -> fragmentManager.beginTransaction()
+                .add(R.id.settingsContainer, displaySettingFragment)
+                .commit()
+
+            "storage" -> fragmentManager.beginTransaction()
+                .add(R.id.settingsContainer, storageSettingsFragment)
+                .commit()
+        }
 
 
     }
